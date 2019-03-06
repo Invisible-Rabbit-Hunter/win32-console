@@ -1,0 +1,78 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.31.1.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 79069713251da67311501a365be2a0c934277a7224c91d2853d9eeeb656c1e0f
+
+name:           win32-console
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/supernerd/win32-console#readme>
+homepage:       https://github.com/supernerd/win32-console#readme
+bug-reports:    https://github.com/supernerd/win32-console/issues
+author:         Jonathan Osser
+maintainer:     osser97@gmail.com
+copyright:      Jonathan Osser
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+    ChangeLog.md
+
+source-repository head
+  type: git
+  location: https://github.com/supernerd/win32-console
+
+library
+  exposed-modules:
+      System.Win32.Console.API
+      System.Win32.Console.Console
+      System.Win32.Console.Console2
+      System.Win32.Console.Console3
+      System.Win32.Console.VirtualKeyCodes
+      System.Win32.Console.Types
+  other-modules:
+  c-sources: cbits/cursor_position.c
+  include-dirs: cbits
+  hs-source-dirs:
+      src
+  build-depends:
+      Win32
+    , bytestring
+    , vector
+    , base >=4.7 && <5
+  default-language: Haskell2010
+
+executable win32-console-exe
+  main-is: Main.hs
+  other-modules:
+      Paths_win32_console
+  hs-source-dirs:
+      app
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      Win32
+    , base >=4.7 && <5
+    , mtl
+    , profunctors
+    , vector
+    , win32-console
+  default-language: Haskell2010
+
+test-suite win32-console-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Paths_win32_console
+  hs-source-dirs:
+      test
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      Win32
+    , base >=4.7 && <5
+    , mtl
+    , profunctors
+    , win32-console
+  default-language: Haskell2010
